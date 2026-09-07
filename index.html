@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>うちなー手帖 ― 沖縄の暮らしと文化の日記</title>
+<meta name="description" content="沖縄の食・音楽・工芸・海の暮らしを、日記とギャラリーでゆっくり書き留めていくサイトです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-bg:#FFF8EA;
+    --color-bg-green:#EAF7D6;
+    --color-bg-orange:#FFE9CE;
+    --color-ink:#3A2A17;
+    --color-orange:#FF7A29;
+    --color-orange-deep:#E85F12;
+    --color-green-deep:#3FA34D;
+    --color-green-light:#C6E13B;
+    --color-red:#FF4B4B;
+
+    --font-display:'Mochiy Pop One', sans-serif;
+    --font-body:'Zen Maru Gothic', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--color-bg);
+    color:var(--color-ink);
+    font-family:var(--font-body);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .sticker{
+    border:3px solid var(--color-ink);
+    box-shadow:4px 4px 0 var(--color-ink);
+  }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--color-bg);
+    border-bottom:3px solid var(--color-ink);
+  }
+  .site-header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:16px;
+    padding-bottom:16px;
+    gap:20px;
+  }
+  .site-title{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    color:var(--color-ink);
+    background:var(--color-green-light);
+    padding:8px 18px;
+    border-radius:999px;
+    transform:rotate(-2deg);
+    display:inline-block;
+  }
+  .site-nav ul{
+    list-style:none;
+    display:flex;
+    gap:10px;
+    margin:0;
+    padding:0;
+    flex-wrap:wrap;
+  }
+  .site-nav a{
+    font-size:0.9rem;
+    font-weight:700;
+    color:var(--color-ink);
+    padding:8px 16px;
+    border-radius:999px;
+    border:2px solid transparent;
+    transition:background .15s ease, color .15s ease, transform .15s ease;
+    display:inline-block;
+  }
+  .site-nav a:hover{
+    background:var(--color-orange);
+    color:#fff;
+    transform:translateY(-2px);
+  }
+  .site-nav a[aria-current="page"]{
+    border-color:var(--color-ink);
+    background:var(--color-bg-orange);
+  }
+
+  /* ---------- palm strip divider ---------- */
+  .palm-strip{ width:100%; height:70px; display:block; }
+  .frond-a{ fill:var(--color-green-deep); }
+  .frond-b{ fill:var(--color-green-light); }
+  .palm-trunk{ fill:var(--color-ink); }
+
+  /* ---------- hero ---------- */
+  .hero{ background:var(--color-bg-green); overflow:hidden; }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:40px;
+    padding-top:56px;
+    padding-bottom:56px;
+  }
+  .hero__content{ animation:rise .6s ease both; }
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce){ .hero__content{ animation:none; } }
+  .hero__title{
+    font-family:var(--font-display);
+    color:var(--color-orange-deep);
+    font-size:clamp(2.1rem, 4.6vw, 3.1rem);
+    line-height:1.5;
+    margin:0 0 18px;
+  }
+  .hero__lead{
+    font-size:1.05rem;
+    max-width:34ch;
+    margin:0 0 26px;
+    font-weight:500;
+  }
+  .hero__cta{
+    display:inline-block;
+    font-weight:700;
+    font-family:var(--font-body);
+    color:var(--color-ink);
+    background:var(--color-orange);
+    padding:14px 30px;
+    border-radius:999px;
+    border:3px solid var(--color-ink);
+    box-shadow:4px 4px 0 var(--color-ink);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .hero__cta:hover{
+    transform:translate(2px,2px);
+    box-shadow:2px 2px 0 var(--color-ink);
+  }
+
+  .hero__art{ width:100%; max-width:400px; margin:0 auto; }
+
+  /* ---------- intro band ---------- */
+  .intro{ background:var(--color-bg); }
+  .intro .wrap{ padding-top:48px; padding-bottom:48px; }
+  .intro p{ max-width:56ch; font-size:1rem; font-weight:500; margin:0; }
+
+  /* ---------- four windows ---------- */
+  .windows{ background:var(--color-bg-orange); padding-top:64px; padding-bottom:72px; }
+  .windows h2{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    margin:0 0 40px;
+    color:var(--color-ink);
+  }
+  .windows__grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+  }
+  .window{
+    background:#fff;
+    border-radius:22px;
+    padding:24px 20px;
+    text-align:center;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .window:nth-child(1){ transform:rotate(-2deg); }
+  .window:nth-child(2){ transform:rotate(1.5deg); }
+  .window:nth-child(3){ transform:rotate(-1deg); }
+  .window:nth-child(4){ transform:rotate(2deg); }
+  .window:hover{ transform:rotate(0) translateY(-4px); box-shadow:6px 6px 0 var(--color-ink); }
+  .window__icon{ width:52px; height:52px; margin:0 auto 14px; }
+  .window h3{ font-size:1rem; font-weight:700; margin:0 0 8px; }
+  .window p{ font-size:0.88rem; margin:0; }
+
+  /* ---------- recent diary ---------- */
+  .diary{ background:var(--color-bg); padding-top:64px; padding-bottom:72px; }
+  .diary__head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:26px;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .diary__head h2{ font-family:var(--font-display); font-size:1.5rem; margin:0; }
+  .diary__more{
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--color-ink);
+    background:var(--color-green-light);
+    padding:8px 16px;
+    border-radius:999px;
+  }
+  .diary__list{ max-width:640px; }
+  .diary__item{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    padding:14px 0;
+    border-bottom:2px dashed rgba(58,42,23,0.25);
+  }
+  .diary__item:hover{ background:rgba(255,122,41,0.07); }
+  .diary__date{
+    flex:0 0 auto;
+    font-weight:700;
+    font-size:0.78rem;
+    color:var(--color-ink);
+    background:var(--color-bg-orange);
+    padding:6px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .diary__text{ margin:0; }
+
+  /* ---------- footer ---------- */
+  .site-footer{ background:var(--color-ink); color:var(--color-bg); }
+  .site-footer .wrap{ padding-top:52px; padding-bottom:36px; }
+  .footer__grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .footer__contact h2,
+  .footer__about h2{
+    font-family:var(--font-display);
+    font-size:1.1rem;
+    margin:0 0 20px;
+    color:var(--color-green-light);
+  }
+  .footer__contact form{ display:flex; flex-direction:column; gap:12px; max-width:400px; }
+  .footer__contact label{ font-size:0.8rem; color:rgba(255,248,234,0.7); display:block; margin-bottom:4px; }
+  .footer__contact input,
+  .footer__contact textarea{
+    width:100%;
+    background:rgba(255,248,234,0.08);
+    border:2px solid rgba(255,248,234,0.3);
+    border-radius:10px;
+    padding:10px 12px;
+    color:var(--color-bg);
+    font-family:var(--font-body);
+    font-size:0.9rem;
+  }
+  .footer__contact input:focus,
+  .footer__contact textarea:focus{ outline:none; border-color:var(--color-orange); }
+  .footer__contact button{
+    align-self:flex-start;
+    margin-top:4px;
+    background:var(--color-orange);
+    color:var(--color-ink);
+    border:2px solid var(--color-bg);
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:0.9rem;
+    padding:10px 24px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .footer__contact button:hover{ background:var(--color-green-light); }
+  .footer__about p{ font-size:0.86rem; color:rgba(255,248,234,0.75); max-width:38ch; }
+  .footer__notice{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:2px solid rgba(255,248,234,0.18);
+    font-size:0.75rem;
+    color:rgba(255,248,234,0.55);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    .hero .wrap{ grid-template-columns:1fr; padding-top:36px; }
+    .hero__art{ order:-1; max-width:260px; }
+    .windows__grid{ grid-template-columns:1fr 1fr; }
+    .footer__grid{ grid-template-columns:1fr; gap:36px; }
+  }
+  @media (max-width:520px){
+    .wrap{ padding:0 20px; }
+    .windows__grid{ grid-template-columns:1fr; }
+    .window{ transform:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="palm" viewBox="0 0 76 92">
+      <path class="palm-trunk" d="M34 90 Q28 50 39 10 L45 10 Q37 50 40 90 Z"/>
+      <g transform="translate(42 10)">
+        <path class="frond-a" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(-100)"/>
+        <path class="frond-b" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(-55)"/>
+        <path class="frond-a" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(-15)"/>
+        <path class="frond-b" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(20)"/>
+        <path class="frond-a" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(55)"/>
+        <path class="frond-b" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(95)"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="site-title">うちなー手帖</div>
+    <nav class="site-nav" aria-label="サイト内ナビゲーション">
+      <ul>
+        <li><a href="index.html" aria-current="page">ホーム</a></li>
+        <li><a href="blog.html">日記</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<svg class="palm-strip" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+  <rect width="1200" height="70" fill="var(--color-bg-green)"/>
+  <use href="#palm" x="-10" y="-10" width="60" height="72"/>
+  <use href="#palm" x="130" y="-6" width="46" height="56"/>
+  <use href="#palm" x="260" y="-12" width="60" height="72"/>
+  <use href="#palm" x="410" y="-6" width="46" height="56"/>
+  <use href="#palm" x="540" y="-10" width="60" height="72"/>
+  <use href="#palm" x="690" y="-6" width="46" height="56"/>
+  <use href="#palm" x="820" y="-12" width="60" height="72"/>
+  <use href="#palm" x="970" y="-6" width="46" height="56"/>
+  <use href="#palm" x="1100" y="-10" width="60" height="72"/>
+</svg>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__content">
+      <h1 class="hero__title">うちなー手帖</h1>
+      <p class="hero__lead">沖縄の食・音楽・工芸・海の暮らしを、見つけたそばから書き留めていく個人の記録帳です。</p>
+      <a class="hero__cta" href="blog.html">日記を読む →</a>
+    </div>
+
+    <svg class="hero__art" viewBox="0 0 400 320" role="img" aria-label="ヤシの木とハイビスカスのイラスト">
+      <circle cx="330" cy="55" r="40" fill="var(--color-orange)" stroke="var(--color-ink)" stroke-width="3"/>
+      <use href="#palm" x="20" y="60" width="120" height="150"/>
+      <use href="#palm" x="230" y="90" width="90" height="115"/>
+
+      <g transform="translate(150 250)">
+        <g transform="rotate(0)"><ellipse fill="var(--color-red)" cx="0" cy="-28" rx="16" ry="32"/></g>
+        <g transform="rotate(72)"><ellipse fill="var(--color-red)" cx="0" cy="-28" rx="16" ry="32"/></g>
+        <g transform="rotate(144)"><ellipse fill="var(--color-red)" cx="0" cy="-28" rx="16" ry="32"/></g>
+        <g transform="rotate(216)"><ellipse fill="var(--color-red)" cx="0" cy="-28" rx="16" ry="32"/></g>
+        <g transform="rotate(288)"><ellipse fill="var(--color-red)" cx="0" cy="-28" rx="16" ry="32"/></g>
+        <circle r="11" fill="var(--color-orange)"/>
+      </g>
+
+      <path d="M0 300 Q100 280 200 300 T400 300 L400 320 L0 320 Z" fill="var(--color-green-deep)"/>
+    </svg>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="wrap">
+    <p>観光の話だけではなく、そばの出汁の香りや、遠くから聞こえるエイサーの太鼓、台風のあとの空の色まで。暮らしのなかにある沖縄の文化を、自分のペースで少しずつ記録していきます。</p>
+  </div>
+</section>
+
+<section class="windows">
+  <div class="wrap">
+    <h2>四つの窓</h2>
+    <div class="windows__grid">
+
+      <div class="window sticker">
+        <svg class="window__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M6 22 a18 18 0 0 0 36 0 Z" fill="var(--color-orange)"/>
+          <ellipse cx="24" cy="22" rx="18" ry="4" fill="none" stroke="var(--color-ink)" stroke-width="2"/>
+          <path d="M18 10 q3 -4 0 -8" fill="none" stroke="var(--color-green-deep)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M26 10 q3 -4 0 -8" fill="none" stroke="var(--color-green-deep)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>そば・食文化</h3>
+        <p>沖縄そばのだし、島野菜、季節の食卓のこと。</p>
+      </div>
+
+      <div class="window sticker">
+        <svg class="window__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <ellipse cx="18" cy="30" rx="10" ry="12" fill="var(--color-red)"/>
+          <line x1="26" y1="24" x2="40" y2="8" stroke="var(--color-ink)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="14" y1="20" x2="10" y2="8" stroke="var(--color-ink)" stroke-width="1.5"/>
+          <line x1="18" y1="18" x2="16" y2="6" stroke="var(--color-ink)" stroke-width="1.5"/>
+          <line x1="22" y1="20" x2="22" y2="7" stroke="var(--color-ink)" stroke-width="1.5"/>
+        </svg>
+        <h3>エイサー・三線</h3>
+        <p>祭りの太鼓と、三線の音が響く夜のこと。</p>
+      </div>
+
+      <div class="window sticker">
+        <svg class="window__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M12 34 Q10 18 24 16 Q38 18 36 34 Z" fill="var(--color-green-light)"/>
+          <path d="M14 16 L10 6 L20 14 Z" fill="var(--color-green-deep)"/>
+          <path d="M34 16 L38 6 L28 14 Z" fill="var(--color-green-deep)"/>
+          <circle cx="18" cy="26" r="2.4" fill="var(--color-ink)"/>
+          <circle cx="30" cy="26" r="2.4" fill="var(--color-ink)"/>
+          <path d="M18 32 Q24 37 30 32" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>紅型・シーサー</h3>
+        <p>染めの模様や、屋根の上で見守る守り神たち。</p>
+      </div>
+
+      <div class="window sticker">
+        <svg class="window__icon" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M4 18 Q12 12 20 18 T36 18 T44 18" fill="none" stroke="var(--color-orange)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M4 27 Q12 21 20 27 T36 27 T44 27" fill="none" stroke="var(--color-green-deep)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M4 36 Q12 30 20 36 T36 36 T44 36" fill="none" stroke="var(--color-green-light)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <h3>海と暮らし</h3>
+        <p>潮の匂いや、海沿いの道で見かけた景色。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="diary">
+  <div class="wrap">
+    <div class="diary__head">
+      <h2>さいきんの日記</h2>
+      <a class="diary__more" href="blog.html">もっと見る →</a>
+    </div>
+    <div class="diary__list">
+      <div class="diary__item">
+        <span class="diary__date">2026.09.03</span>
+        <p class="diary__text">近所の工房で、新しいシーサーを一体連れて帰ってきた。玄関に置く場所を考え中。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.08.28</span>
+        <p class="diary__text">公民館からエイサーの練習の太鼓が聞こえてきた。もうすぐ夏祭りの季節。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.08.20</span>
+        <p class="diary__text">台風が過ぎたあとの空が、やけに青かった。洗濯物がよく乾く一日。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__contact">
+        <h2>おたより</h2>
+        <form action="https://formspree.io/f/maqvpvoz" method="POST">
+          <div>
+            <label for="name">お名前</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">メールアドレス</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="message">メッセージ</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit">送信する</button>
+        </form>
+      </div>
+      <div class="footer__about">
+        <h2>このサイトについて</h2>
+        <p>沖縄の文化や暮らしを、日記とギャラリーで少しずつ記録している個人サイトです。詳しくは「このサイトについて」のページをご覧ください。</p>
+      </div>
+    </div>
+
+    <div class="footer__notice">
+      <span>本サイトの文章・画像の無断AI学習利用を禁止します。</span>
+      <span>© 2026 うちなー手帖 / Azalea Creative Room</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
