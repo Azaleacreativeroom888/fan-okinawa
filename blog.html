@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日記 ― うちなー手帖</title>
+<meta name="description" content="沖縄の暮らしと文化について、日々思ったことを書き留めている日記です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-bg:#FFF8EA;
+    --color-bg-green:#EAF7D6;
+    --color-bg-orange:#FFE9CE;
+    --color-ink:#3A2A17;
+    --color-orange:#FF7A29;
+    --color-orange-deep:#E85F12;
+    --color-green-deep:#3FA34D;
+    --color-green-light:#C6E13B;
+    --color-red:#FF4B4B;
+
+    --font-display:'Mochiy Pop One', sans-serif;
+    --font-body:'Zen Maru Gothic', sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--color-bg);
+    color:var(--color-ink);
+    font-family:var(--font-body);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  svg{ display:block; max-width:100%; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--color-bg);
+    border-bottom:3px solid var(--color-ink);
+  }
+  .site-header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:16px;
+    padding-bottom:16px;
+    gap:20px;
+  }
+  .site-title{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    color:var(--color-ink);
+    background:var(--color-green-light);
+    padding:8px 18px;
+    border-radius:999px;
+    transform:rotate(-2deg);
+    display:inline-block;
+  }
+  .site-nav ul{ list-style:none; display:flex; gap:10px; margin:0; padding:0; flex-wrap:wrap; }
+  .site-nav a{
+    font-size:0.9rem;
+    font-weight:700;
+    color:var(--color-ink);
+    padding:8px 16px;
+    border-radius:999px;
+    border:2px solid transparent;
+    transition:background .15s ease, color .15s ease, transform .15s ease;
+    display:inline-block;
+  }
+  .site-nav a:hover{ background:var(--color-orange); color:#fff; transform:translateY(-2px); }
+  .site-nav a[aria-current="page"]{ border-color:var(--color-ink); background:var(--color-bg-orange); }
+
+  /* ---------- palm strip ---------- */
+  .palm-strip{ width:100%; height:70px; display:block; }
+  .frond-a{ fill:var(--color-green-deep); }
+  .frond-b{ fill:var(--color-green-light); }
+  .palm-trunk{ fill:var(--color-ink); }
+
+  /* ---------- page intro ---------- */
+  .page-intro{ background:var(--color-bg-green); }
+  .page-intro .wrap{ padding-top:48px; padding-bottom:44px; }
+  .page-intro h1{
+    font-family:var(--font-display);
+    color:var(--color-orange-deep);
+    font-size:clamp(1.8rem, 4vw, 2.4rem);
+    line-height:1.5;
+    margin:0 0 14px;
+  }
+  .page-intro p{ max-width:46ch; font-weight:500; margin:0; }
+
+  /* ---------- diary list ---------- */
+  .diary{ background:var(--color-bg); padding-top:48px; padding-bottom:80px; }
+  .diary__list{ max-width:680px; }
+  .diary__item{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    padding:16px 0;
+    border-bottom:2px dashed rgba(58,42,23,0.25);
+  }
+  .diary__item:first-child{ border-top:2px dashed rgba(58,42,23,0.25); }
+  .diary__item:hover{ background:rgba(255,122,41,0.07); }
+  .diary__date{
+    flex:0 0 auto;
+    font-weight:700;
+    font-size:0.78rem;
+    color:var(--color-ink);
+    background:var(--color-bg-orange);
+    padding:6px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .diary__text{ margin:0; }
+
+  /* ---------- footer ---------- */
+  .site-footer{ background:var(--color-ink); color:var(--color-bg); }
+  .site-footer .wrap{ padding-top:52px; padding-bottom:36px; }
+  .footer__grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .footer__contact h2,
+  .footer__about h2{
+    font-family:var(--font-display);
+    font-size:1.1rem;
+    margin:0 0 20px;
+    color:var(--color-green-light);
+  }
+  .footer__contact form{ display:flex; flex-direction:column; gap:12px; max-width:400px; }
+  .footer__contact label{ font-size:0.8rem; color:rgba(255,248,234,0.7); display:block; margin-bottom:4px; }
+  .footer__contact input,
+  .footer__contact textarea{
+    width:100%;
+    background:rgba(255,248,234,0.08);
+    border:2px solid rgba(255,248,234,0.3);
+    border-radius:10px;
+    padding:10px 12px;
+    color:var(--color-bg);
+    font-family:var(--font-body);
+    font-size:0.9rem;
+  }
+  .footer__contact input:focus,
+  .footer__contact textarea:focus{ outline:none; border-color:var(--color-orange); }
+  .footer__contact button{
+    align-self:flex-start;
+    margin-top:4px;
+    background:var(--color-orange);
+    color:var(--color-ink);
+    border:2px solid var(--color-bg);
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:0.9rem;
+    padding:10px 24px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .footer__contact button:hover{ background:var(--color-green-light); }
+  .footer__about p{ font-size:0.86rem; color:rgba(255,248,234,0.75); max-width:38ch; }
+  .footer__notice{
+    margin-top:44px;
+    padding-top:20px;
+    border-top:2px solid rgba(255,248,234,0.18);
+    font-size:0.75rem;
+    color:rgba(255,248,234,0.55);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){ .footer__grid{ grid-template-columns:1fr; gap:36px; } }
+  @media (max-width:520px){
+    .wrap{ padding:0 20px; }
+    .diary__item{ flex-direction:column; gap:6px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="palm" viewBox="0 0 76 92">
+      <path class="palm-trunk" d="M34 90 Q28 50 39 10 L45 10 Q37 50 40 90 Z"/>
+      <g transform="translate(42 10)">
+        <path class="frond-a" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(-100)"/>
+        <path class="frond-b" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(-55)"/>
+        <path class="frond-a" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(-15)"/>
+        <path class="frond-b" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(20)"/>
+        <path class="frond-a" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(55)"/>
+        <path class="frond-b" d="M0 0 C-20 -10 -38 -8 -48 2 C-30 0 -14 2 0 0 Z" transform="rotate(95)"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="site-title">うちなー手帖</div>
+    <nav class="site-nav" aria-label="サイト内ナビゲーション">
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="blog.html" aria-current="page">日記</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<svg class="palm-strip" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+  <rect width="1200" height="70" fill="var(--color-bg-green)"/>
+  <use href="#palm" x="-10" y="-10" width="60" height="72"/>
+  <use href="#palm" x="130" y="-6" width="46" height="56"/>
+  <use href="#palm" x="260" y="-12" width="60" height="72"/>
+  <use href="#palm" x="410" y="-6" width="46" height="56"/>
+  <use href="#palm" x="540" y="-10" width="60" height="72"/>
+  <use href="#palm" x="690" y="-6" width="46" height="56"/>
+  <use href="#palm" x="820" y="-12" width="60" height="72"/>
+  <use href="#palm" x="970" y="-6" width="46" height="56"/>
+  <use href="#palm" x="1100" y="-10" width="60" height="72"/>
+</svg>
+
+<section class="page-intro">
+  <div class="wrap">
+    <h1>日記</h1>
+    <p>沖縄で見つけたもの、聞こえてきた音、季節の変わり目のこと。思いついたときに書き留めています。</p>
+  </div>
+</section>
+
+<section class="diary">
+  <div class="wrap">
+    <div class="diary__list">
+
+      <div class="diary__item">
+        <span class="diary__date">2026.09.03</span>
+        <p class="diary__text">近所の工房で、新しいシーサーを一体連れて帰ってきた。玄関に置く場所を考え中。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.08.28</span>
+        <p class="diary__text">公民館からエイサーの練習の太鼓が聞こえてきた。もうすぐ夏祭りの季節。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.08.20</span>
+        <p class="diary__text">台風が過ぎたあとの空が、やけに青かった。洗濯物がよく乾く一日。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.08.10</span>
+        <p class="diary__text">商店街で泡盛の古酒を分けてもらった。もったいなくて、まだ開ける勇気が出ない。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.08.02</span>
+        <p class="diary__text">海沿いをドライブしていたら、道端でハイビスカスが真っ赤に咲いているのを見つけた。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.07.24</span>
+        <p class="diary__text">実家から届いたゴーヤーで、初めて自分でチャンプルーを作ってみた。少し苦かったけど上出来。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.07.15</span>
+        <p class="diary__text">台風接近のニュース。窓に飛散防止のテープを貼る準備をした。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.07.02</span>
+        <p class="diary__text">近所のおばあに三線の弾き方を教わった。まだ指がぜんぜん動かない。</p>
+      </div>
+      <div class="diary__item">
+        <span class="diary__date">2026.06.20</span>
+        <p class="diary__text">梅雨明け宣言。とたんにセミの声が大きくなった気がする。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__contact">
+        <h2>おたより</h2>
+        <form action="https://formspree.io/f/maqvpvoz" method="POST">
+          <div>
+            <label for="name">お名前</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div>
+            <label for="email">メールアドレス</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="message">メッセージ</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit">送信する</button>
+        </form>
+      </div>
+      <div class="footer__about">
+        <h2>このサイトについて</h2>
+        <p>沖縄の文化や暮らしを、日記とギャラリーで少しずつ記録している個人サイトです。詳しくは「このサイトについて」のページをご覧ください。</p>
+      </div>
+    </div>
+
+    <div class="footer__notice">
+      <span>本サイトの文章・画像の無断AI学習利用を禁止します。</span>
+      <span>© 2026 うちなー手帖 / Azalea Creative Room</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
